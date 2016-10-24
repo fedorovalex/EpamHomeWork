@@ -3,6 +3,8 @@ package com.epam.task01;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.abs;
+
 public class Solution {
 
     /**
@@ -46,9 +48,7 @@ public class Solution {
 
         int[][] resultMatrix = null;
 
-        if (!isMatrixValid(firstMatrix) || !isMatrixValid(secondMatrix)) {
-            System.out.println("Перемножение невозможно");
-        } else {
+        if (isMatrixValid(firstMatrix) && isMatrixValid(secondMatrix)) {
 
             int firstRowCount = firstMatrix.length;
             int secondRowCount = secondMatrix.length;
@@ -72,11 +72,26 @@ public class Solution {
     }
 
 
-    /*public ArrayList<Double> getArraysIntersection(double[] first, double[] second) {
-        ArrayList<Double> result
-
-
-    }*/
+    /**
+     *
+     * @param first
+     * @param second
+     * @param epsilon
+     * @return
+     */
+    public ArrayList<Double> getArraysIntersection(double[] first, double[] second, double epsilon) {
+        ArrayList<Double> intersection = new ArrayList<Double>();
+        if (first != null && second != null) {
+            for (int i = 0; i < first.length; i++) {
+                for (int j = 0; j < second.length; j++) {
+                    if (abs(first[i] - second[j]) < epsilon) {
+                        intersection.add(first[i]);
+                    }
+                }
+            }
+        }
+        return intersection;
+    }
 
 
     /**
